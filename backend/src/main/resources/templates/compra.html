@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--
+Template Name: Nekmit
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Login</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="css/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body id="top" style="background-color: #026B8A">
+
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- Top Background Image Wrapper -->
+	<header id="header" class="hoc clear">
+		<div id="logo" class="fl_left">
+			<!-- ################################################################################################ -->
+			<h1>
+				<a href="index.html" th:href="@{/}">Tienda de ropa</a>
+			</h1>
+			<!-- ################################################################################################ -->
+		</div>
+		<nav id="mainav" class="fl_right">
+			<!-- ################################################################################################ -->
+			<ul class="clear">
+				<li><a href="index.html" th:href="@{/}">Inicio</a></li>
+				<li><a class="drop" href="#">Marcas</a>
+					<ul>
+						<li th:each="marca : ${marcas}"><a
+							th:href="@{generic} + ${marca.idMarca}" th:text="${marca.nombre}"></a></li>
+					</ul></li>
+				<li><a href="#" th:href="@{buscador}">Buscar</a></li>
+
+				<li><a href="#" th:href="@{compra}"
+					th:if="${#lists.isEmpty(carrito)}">Compra(0)</a> <a href="#"
+					th:href="@{compra}" th:unless="${#lists.isEmpty(carrito)}"
+					th:text="Compra+${p1}+ ${#lists.size(carrito)} +${p2}"></a></li>
+				<li><a href="#" th:href="@{login}"
+					th:if="${#lists.isEmpty(user)}">Inicio de sesión</a> <a href="#"
+					th:href="@{login}" th:unless="${#lists.isEmpty(user)}"
+					th:text="${user[0].nombre}"></a></li>
+			</ul>
+			<!-- ################################################################################################ -->
+		</nav>
+	</header>
+
+
+
+	<div class="wrapper row3">
+		<div class="container">
+			<div class="row">
+				<div class="col-10">
+					<div class="content three_quarter first"
+						th:each="compra :${compras}">
+						<div class="col-12">
+							<div class="media">
+								<img th:src="${compra.imagenes[0]}" alt="">
+								<div class="media-body">
+									<h5 class="mt-0 mb-1" th:text="${compra.intro}"></h5>
+									<p th:text="${compra.descripcion}"></p>
+								</div>
+								<a><i class="fas fa-trash-alt"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="content three_quarter first">
+						<h3 class="mt-0 mb-1">Total</h3>
+						<a th:text="${precioFin}"></a>
+						<a class="btn">Comprar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper row4">
+		<footer id="footer" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<div class="one_quarter first">
+				<h6 class="heading">Praesent id aliquam</h6>
+				<p>
+					Non tellus nec sapien lobortis lobortis mauris egestas massa ac
+					cursus pellentesque leo risus convallis nulla et fringilla sapien
+					magna sit amet magna aliquam tempus praesent sit amet neque sed
+					lobortis nulla facilisi [<a href="#">&hellip;</a>]
+				</p>
+				<ul class="faico clear">
+					<li><a class="faicon-facebook" href="#"><i
+							class="fab fa-facebook"></i></a></li>
+					<li><a class="faicon-google-plus" href="#"><i
+							class="fab fa-google-plus-g"></i></a></li>
+					<li><a class="faicon-linkedin" href="#"><i
+							class="fab fa-linkedin"></i></a></li>
+					<li><a class="faicon-twitter" href="#"><i
+							class="fab fa-twitter"></i></a></li>
+					<li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+				</ul>
+			</div>
+			<div class="one_quarter">
+				<h6 class="heading">Rutrum amet sodales</h6>
+				<ul class="nospace linklist">
+					<li><a href="#">Nulla tincidunt magna</a></li>
+					<li><a href="#">Vel iaculis mollis mi</a></li>
+					<li><a href="#">Lacus tincidunt diam ac</a></li>
+					<li><a href="#">Varius purus justo pretium</a></li>
+					<li><a href="#">Nunc proin tortor elit</a></li>
+				</ul>
+			</div>
+			<div class="one_quarter">
+				<h6 class="heading">At feugiat in diam</h6>
+				<p class="nospace btmspace-15">In vestibulum dolor et augue
+					fusce neque enim scelerisque at fermentum.</p>
+				<form action="#" method="post">
+					<fieldset>
+						<legend>Newsletter:</legend>
+						<input class="btmspace-15" type="text" value="" placeholder="Name">
+						<input class="btmspace-15" type="text" value=""
+							placeholder="Email">
+						<button class="btn" type="submit" value="submit">Submit</button>
+					</fieldset>
+				</form>
+			</div>
+			<div class="one_quarter last">
+				<h6 class="heading">Sed imperdiet pharetra</h6>
+				<ul class="nospace linklist">
+					<li>
+						<article>
+							<h6 class="nospace font-x1">
+								<a href="#">Massa nam nulla augue</a>
+							</h6>
+							<time class="font-xs block btmspace-10" datetime="2045-04-06">
+								Friday, 6<sup>th</sup> April 2045
+							</time>
+							<p class="nospace">Faucibus nec lacinia quis ornare a eros
+								pellentesque in orci vitae</p>
+						</article>
+					</li>
+					<li>
+						<article>
+							<h6 class="nospace font-x1">
+								<a href="#">Velit vehicula auctor</a>
+							</h6>
+							<time class="font-xs block btmspace-10" datetime="2045-04-05">
+								Thursday, 5<sup>th</sup> April 2045
+							</time>
+							<p class="nospace">Pellentesque pulvinar vestibulum bibendum
+								blandit lectus pretium</p>
+						</article>
+					</li>
+				</ul>
+			</div>
+			<!-- ################################################################################################ -->
+		</footer>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row5">
+		<div id="copyright" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<p class="fl_left">
+				Copyright &copy; 2022 - All Rights Reserved - <a href="#">R</a>
+			</p>
+			<p class="fl_right">
+				Template by <a target="_blank" href="https://www.os-templates.com/"
+					title="Free Website Templates">OS Templates</a>
+			</p>
+			<!-- ################################################################################################ -->
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+	<!-- JAVASCRIPTS -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.backtotop.js"></script>
+	<script src="js/jquery.mobilemenu.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+</html>
