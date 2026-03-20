@@ -2,13 +2,13 @@ package com.proyectotiendaropa.resources;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.proyectotiendaropa.model.Ropa;
 
-public interface RopaRepository extends CrudRepository<Ropa, Long> {
+public interface RopaRepository extends JpaRepository<Ropa, Long> {
 
 	@Query("select x FROM Ropa x where x.descripcion LIKE %:descripcion%")
 	  List <Ropa> findByDescripcion(@Param("descripcion") String descripcion);
