@@ -27,8 +27,7 @@ import com.proyectotiendaropa.service.UsuarioService;
  * @author David
  *
  */
-@RestController
-@RequestMapping("/api/ropa")
+@Controller
 public class Controlador {
 
 	@Autowired
