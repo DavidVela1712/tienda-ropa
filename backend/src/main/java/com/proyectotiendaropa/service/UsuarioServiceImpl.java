@@ -19,12 +19,15 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
-	public boolean login(Usuario usuario) {
+	public Usuario login(Usuario usuario) {
+		if (usuario.getCorreo() == null || usuario.getPassword() == null){
+			return null;
+		}
 		Usuario userDB = repository.findUsuarioByCorreo(usuario.getCorreo());
 
-		if (userDB != null && passwordEncoder.matches(userDB.getPassword(), usuario.getPassword())) return true;
+		if (userDB != null && passwordEncoder.matches(usuario.getPassword(), userDB.getPassword())) return userDB;
         else {
-			return false;
+			return null;
 		}
 	}
 
@@ -47,6 +50,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public Usuario crearUsuario(Usuario usuario) {
+
+		System.out.println(usuario.toString());
+
+		if (usuario.getPassword() == null){
+			throw new RuntimeException("Password no puede ser null");
+		}
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return repository.save(usuario);
 	}
 }

@@ -6,7 +6,7 @@ import com.proyectotiendaropa.model.Usuario;
 
 public interface UsuarioService {
 
-	public boolean login(Usuario usuario);
+	public Usuario login(Usuario usuario);
 	
 	public List<Usuario> findAll();
 	

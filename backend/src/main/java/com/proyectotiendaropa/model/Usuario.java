@@ -1,5 +1,7 @@
 package com.proyectotiendaropa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -20,7 +22,7 @@ public class Usuario implements Serializable {
 	
 	@Column(name = "correo")
 	private String correo;
-	
+
 	@Column(name = "password")
 	private String password;
 	
@@ -120,6 +122,18 @@ public class Usuario implements Serializable {
 		this.vendedor = vendedor;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario{" +
+				"idUsuario=" + idUsuario +
+				", nombre='" + nombre + '\'' +
+				", correo='" + correo + '\'' +
+				", password='" + password + '\'' +
+				", cp=" + cp +
+				", telefono='" + telefono + '\'' +
+				", vendedor='" + vendedor + '\'' +
+				'}';
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
