@@ -1,6 +1,7 @@
 package com.proyectotiendaropa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -23,6 +24,7 @@ public class Usuario implements Serializable {
 	@Column(name = "correo")
 	private String correo;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "password")
 	private String password;
 	

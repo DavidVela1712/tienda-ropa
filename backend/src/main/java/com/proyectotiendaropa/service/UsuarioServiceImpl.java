@@ -3,6 +3,7 @@ package com.proyectotiendaropa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +21,23 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public Usuario login(Usuario usuario) {
+
+		System.out.println("Usuario recibido en login: "+ usuario);
+
 		if (usuario.getCorreo() == null || usuario.getPassword() == null){
-			return null;
+			throw  new RuntimeException("Correo o contraseña vacío");
 		}
 		Usuario userDB = repository.findUsuarioByCorreo(usuario.getCorreo());
+		System.out.println("Usuario encontrado: "+ userDB);
 
-		if (userDB != null && passwordEncoder.matches(usuario.getPassword(), userDB.getPassword())) return userDB;
-        else {
-			return null;
+		if (userDB == null) {
+			throw new RuntimeException("Usuario no encontrado");
 		}
+
+		if (!passwordEncoder.matches(usuario.getPassword(), userDB.getPassword())){
+			throw new RuntimeException("Contraseña incorrecta");
+		}
+        return userDB;
 	}
 
 	@Override

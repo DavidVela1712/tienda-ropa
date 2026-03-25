@@ -1,5 +1,6 @@
 package com.proyectotiendaropa.controller;
 
+import com.proyectotiendaropa.model.LoginDTO;
 import com.proyectotiendaropa.model.Usuario;
 import com.proyectotiendaropa.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,13 @@ public class AuthController {
     private UsuarioService usuarioService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
-        Usuario user = usuarioService.login(usuario);
-        if(user != null) {
+    public ResponseEntity<?> login(@RequestBody Usuario userRequest) {
+        try {
+            Usuario user = usuarioService.login(userRequest);
             return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
+
     }
 }
