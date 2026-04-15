@@ -16,7 +16,7 @@ public class RopaServiceImpl implements RopaService{
 
 	@Override
 	public List<Ropa> findAll() {
-		return (List<Ropa>) repository.findAll();
+		return repository.findAll();
 	}
 
 	@Override
