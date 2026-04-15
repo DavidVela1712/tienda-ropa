@@ -30,4 +30,15 @@ public class AuthController {
         }
 
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Usuario newUser) {
+        try {
+            Usuario user = usuarioService.crearUsuario(newUser);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
+
+    }
 }
